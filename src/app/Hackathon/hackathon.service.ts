@@ -3,18 +3,20 @@ import { hackathonRepository } from "./hackathon.repository";
 import { Hackathon } from "./Hackathon.model";
 import { Subject } from "rxjs";
 
-@Injectable({providedIn:'root'})
+@Injectable()
 export class hackathonService{
     role=[];
     allHackathonsArray:Hackathon[]=[];
     goingHackathons:Hackathon[]=[];
     soonHackathons:Hackathon[]=[];
     loaded=new Subject<boolean>();
+    hackathonByIdLoaded=new Subject<boolean>();
     constructor(private hackRepo:hackathonRepository){
         this.getAllHackathons();
     }
     getHackathonById(id:number){
-         console.log(this.allHackathonsArray)
+        console.log("in function get hackathon by id")
+        console.log(this.allHackathonsArray)
         return this.allHackathonsArray.find(h=>h.id);
     }
     getAllHackathons(){

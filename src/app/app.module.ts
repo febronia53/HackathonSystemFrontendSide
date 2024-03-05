@@ -23,6 +23,7 @@ import { CommonModule } from '@angular/common';
 import { Authenticationinterceptor } from './Authentication/Interceptor.service';
 import { TimelineModule } from 'primeng/timeline';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { hackathonService } from './Hackathon/hackathon.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +53,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     ProgressSpinnerModule
   ],
   providers: [
+    hackathonService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Authenticationinterceptor,

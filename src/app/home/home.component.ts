@@ -5,8 +5,8 @@ import { Hackathon } from '../Hackathon/Hackathon.model';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  providers:[hackathonService]
+  styleUrls: ['./home.component.scss']
+  //providers:[hackathonService]
 })
 export class HomeComponent {
   hackathons:Hackathon[]=[]
@@ -14,17 +14,32 @@ export class HomeComponent {
   soonHackathons:Hackathon[]=[];
   goingHackathons:Hackathon[]=[];
 constructor(private hackService:hackathonService){
-  this.hackathons=hackService.allHackathonsArray;
-  this.soonHackathons=hackService.soonHackathons;  
-  this.goingHackathons=hackService.goingHackathons;  
-
-  console.log(this.goingHackathons);
-  console.log(this.soonHackathons);
-  console.log(this.hackathons);
-  hackService.loaded.subscribe(flag=>{
-    console.log(flag);
-    this.isLoaded=flag;
-  })
+  if(hackService.allHackathonsArray.length){
+    this.hackathons=hackService.allHackathonsArray;
+    this.soonHackathons=hackService.soonHackathons;  
+    this.goingHackathons=hackService.goingHackathons; 
+    this.isLoaded=true; 
+  }else{
+    hackService.loaded.subscribe(flag=>{
+          if(flag==true){
+            this.hackathons=hackService.allHackathonsArray;
+            this.soonHackathons=hackService.soonHackathons;  
+            this.goingHackathons=hackService.goingHackathons; 
+          }
+          this.isLoaded=flag;
+        })
+  }
+  // this.hackathons=hackService.allHackathonsArray;
+  // console.log(this.hackathons)
+  // this.soonHackathons=hackService.soonHackathons;  
+  // this.goingHackathons=hackService.goingHackathons;  
+  
+  // if(hackService.allHackathonsArray){
+  //   hackService.loaded.subscribe(flag=>{
+  //     console.log(flag);
+  //     this.isLoaded=flag;
+  //   })
+  // }
  
 }
  
