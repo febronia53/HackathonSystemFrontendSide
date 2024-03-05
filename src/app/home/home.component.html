@@ -1,0 +1,51 @@
+<app-header></app-header>
+
+<div class="card custCard" *ngIf="isLoaded;" style="margin-left: 4%;">
+    <h3 style="color: #013168; margin-top: 4%;margin-left: 1%;">Current Events</h3>
+    <p-carousel [value]="goingHackathons " [numVisible]="3" [numScroll]="3" [circular]="true" [responsiveOptions]="responsiveOptions" >
+        <ng-template let-goingHack pTemplate="item">
+            <div class="border-1 surface-border border-round m-2 text-center py-5 px-3 customclass"
+             [routerLink]="['hackathon',goingHack.id]">
+                <div class="mb-3">
+                    <img src="../../assets/image.png" [alt]="goingHack.name" class="w-6 shadow-2" />
+                </div>
+                <div>
+                    <h4 class="mt-5">{{ goingHack.name }}</h4>
+                    <div class="mt-5 flex align-items-center justify-content-center gap-2">
+                        <div  
+                        class="custom-tag"
+                        >{{goingHack.status}}</div>
+                </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
+
+<div class="card custCard"  *ngIf="isLoaded" style="margin-left: 4%;">
+    <h3 style="color:#013168;margin-top: 4%;margin-left: 1%;">Upcomming Events</h3>
+    <p-carousel [value]="soonHackathons" [numVisible]="3" [numScroll]="3" [circular]="true" [responsiveOptions]="responsiveOptions" >
+        <ng-template let-hackthon pTemplate="item" >
+            <div class="border-1 surface-border border-round m-2 text-center py-5 px-3 customclass"
+            [routerLink]="['hackathon',hackthon.id]"
+             routerLink="/" >
+                <div class="mb-3">
+                    <img src="../../assets/UpcommingEvents.png" [alt]="hackthon.name" class="w-6 shadow-2" />
+                </div>
+             
+                <div>
+                    <h4 class="mt-5">{{ hackthon.name }}</h4>
+                    <div class="mt-5 flex align-items-center justify-content-center gap-2">
+                        <div  
+                        class="custom-tag" style="background-color: #9e9e9e;"
+                        >{{hackthon.status}}</div>
+                </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
+
+<div class="card flex justify-content-center" style="text-align: center;" *ngIf="!isLoaded">
+    <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+</div>

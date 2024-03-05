@@ -1,0 +1,82 @@
+<app-header></app-header>
+<!-- hackathon-registration.component.html -->
+<div class="container mt-5 background-image">
+    <div class="row justify-content-center my-3">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header custCardHeader">
+            <h4 style="text-align: center;">Welcome to {{hackathon!.name}}</h4>
+          </div>
+          <div class="card-body">
+            <!-- Add your registration form here using PrimeNG components -->
+            <form [formGroup]="RegisterHackathon" (ngSubmit)="onSubmit()">
+              <div class="form-group my-3">
+                <label for="eventName">Team Name</label>
+                <input type="text" class="form-control my-2" id="teamName" placeholder="Enter Team name" 
+                                 value="HackName" name="teamName" formControlName="teamName" required>
+                 <span *ngIf="RegisterHackathon.get('teamName')!.touched && RegisterHackathon.get('teamName')!.invalid"
+                 class="text-danger">
+                  Team Name is required.
+                </span>
+              </div>
+
+            <div class="form-group my-2">
+                <select name="selectChallenge" id="selectChallenge" class="form-control">
+                    <option selected hidden>Choose your Challenge</option>
+                    <option value="options" *ngFor="let options of hackathon?.ChallengeTitle">{{options|json }}</option>
+                </select>
+                 <span *ngIf="RegisterHackathon.get('ChallengeTitle')!.touched && RegisterHackathon.get('ChallengeTitle')!.invalid"
+                 class="text-danger">
+                  Challenge title is required.
+                </span>
+              </div>
+
+              <div class="col-xs-12" formArrayName="teamMembers" >
+                <div class="row"
+                *ngFor="let member of controls ;let i=index"
+                [formGroupName]="i">
+                    <div class="col-xs-8 ">
+                        <label>Team Member Name</label>
+                        <input type="text"
+                        class="form-control"
+                        formControlName="name">
+                    </div>
+                    <div class="col-xs-2 ">
+                        <label>Team Member id</label>
+                        <input type="number"class="form-control"
+                        formControlName="id">
+                    </div>
+                    <div class="col-xs-2 ">
+                        <label>Team Member title</label>
+                        <input type="text"class="form-control"
+                        formControlName="title">
+                    </div>
+                    <div class="col-xs-2 ">
+                        <label>Team Member Email</label>
+                        <input type="email"class="form-control"
+                        formControlName="Email">
+                    </div>
+                    
+                    <div class="col-xs-2 ">
+                        <label>Team Member phoneNumber</label>
+                        <input type="tel"class="form-control"
+                        formControlName="phoneNumber">
+                    </div>
+
+                    <button type="button" class="btn btn-danger" 
+                    style="margin-top: 25px;margin-left: 10px;width: 40%;"
+                    (click)="OnDeleteMember(i)">Delete Member</button>
+                </div>
+                <hr>
+                <button type="button" class="btn btn-success" (click)="onAddMember()" style="background-color: #1fed93;" [disabled]="hackathon!.maxTeamSize==controls.length ">Add Team Member</button>
+            </div>
+              
+              
+              <button type="submit" class="btn btn-primary" style="background-color: #013168 ;margin-top: 2%;" *ngIf="">Register</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

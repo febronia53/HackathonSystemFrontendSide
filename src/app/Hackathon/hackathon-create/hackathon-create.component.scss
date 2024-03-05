@@ -1,0 +1,26 @@
+/* other.component.css */
+.custCardHeader{
+    text-align: center !important;
+    color: #013168;
+}
+input{
+    border: 3px solid  #013168 ;
+    margin-bottom: 10px;
+   
+}
+label{
+    margin-bottom: 5px;
+
+}
+.short-calendar {
+    height: 2rem; /* Adjust the height as needed */
+  }
+  
+  .short-calendar .ui-calendar {
+    height: 2.5rem; /* Adjust the height as needed */
+  }
+  ::ng-deep .prime-slider-override {
+     color: #013168 !important;
+     height: 40px;
+   
+}

@@ -1,0 +1,40 @@
+<div class="container mt-4">
+    <div class="card custom-shadow">
+      <div class="card-body">
+        <h2 class="card-title" style="text-align: center; color:#013168 ;">{{ hackData.name }}</h2>
+        <div class="row my-5" style="text-align: center;">
+          <div class="col-4">
+            <p class="card-text">Theme: {{ hackData.theme }}</p>
+          </div>
+          <div class="col-4">
+            <p class="card-text">Max Team Size: {{ hackData.maxTeamSize }}</p>
+          </div>
+          <div class="col-4">
+            <p class="card-text">Number of Teams: {{ hackData.numberOfTeams }}</p>
+          </div>
+        </div>
+  
+
+          <div class="card" style="border: none;">
+            <p-timeline [value]="events">
+                <ng-template pTemplate="content" let-event>
+                    <small class="p-text-secondary" >{{ event.date }}</small>
+                </ng-template>
+                <ng-template pTemplate="opposite" let-event style="color: #013168;">
+                    {{ event.name }}
+                </ng-template>
+            </p-timeline>
+        </div>
+        
+     
+        <h5 class="mt-3 text-center" style="text-align: center;">Challenge Titles</h5>
+        <ul class="list-group list-group-horizontal d-flex justify-content-center">
+            <li class="list-group-item" *ngFor="let title of hackData.ChallengeTitle">{{ title.title}}</li>
+          </ul>
+          
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 30px;"><button class="btn btn-primary" 
+        style="background-color: #013168; box-shadow:0 0 200px #013168  ;color:white" *ngIf="typeOfUser" [routerLink]="['/registerToHackathon',hackData.id]">Register Now</button></div>
+      </div>
+  
