@@ -9,8 +9,10 @@ export class AuthService{
     user: BehaviorSubject<boolean|null> = new BehaviorSubject<boolean|null>(null);
     roles: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     registerationAdjustedForm={email:"",username:"",password:""};
+    roleValue=[];
     constructor(private authRepo:AuthRepository,private router:Router){
-        this.roles.next(false);
+     
+      //  this.roles.next(false);
             var token=localStorage.getItem('token');
             if(token){
                 this.user.next(true);
@@ -24,6 +26,7 @@ export class AuthService{
         this.authRepo.login(loginForm.value).subscribe(data=>{
             console.log(data.token)
             localStorage.setItem('token',data.token);
+            this.roleValue=data.roles;
             if(data.roles.length>0){
                 this.roles.next(true);
             }else{

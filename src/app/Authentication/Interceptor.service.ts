@@ -17,7 +17,7 @@ export class Authenticationinterceptor implements HttpInterceptor {
             if(!user){
                 return next.handle(req);
             }
-            const modefiedReq= req.clone({params:new HttpParams().set('auth',!token)});
+            const modefiedReq= req.clone({params:new HttpParams().set('Authorization',!token)});
                 return next.handle(modefiedReq);
             }));    
         }

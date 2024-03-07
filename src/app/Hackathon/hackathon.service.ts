@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { hackathonRepository } from "./hackathon.repository";
 import { Hackathon } from "./Hackathon.model";
 import { Subject } from "rxjs";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class hackathonService{
@@ -11,17 +12,14 @@ export class hackathonService{
     soonHackathons:Hackathon[]=[];
     loaded=new Subject<boolean>();
     hackathonByIdLoaded=new Subject<boolean>();
-    constructor(private hackRepo:hackathonRepository){
+    constructor(private hackRepo:hackathonRepository,private router:Router){
         this.getAllHackathons();
     }
     getHackathonById(id:number){
-        console.log("in function get hackathon by id")
-        console.log(this.allHackathonsArray)
         return this.allHackathonsArray.find(h=>h.id);
     }
     getAllHackathons(){
        this.hackRepo.getHackathonsArray().subscribe(data=>{
-        console.log(data);
         for(var hack of data){                
             this.allHackathonsArray.push(this.mapping(hack));
         }
@@ -56,6 +54,20 @@ export class hackathonService{
             }
             return hack;
     }
-    CreateHackathon(){}
+    CreateHackathon(hackathonForm:any){
+       let challengeTitle= [{}]; 
+       for(var title in hackathonForm.challengeTitles){
+            challengeTitle.push({title:hackathonForm.challengeTitles[title]});
+       }
+       challengeTitle.shift();
+       hackathonForm.challengeTitles=challengeTitle;
+         this.hackRepo.CreateHackathon(hackathonForm).subscribe(res=>{
+            this.getAllHackathons();
+            if(res.isSuccess){
+                console.log(res.message);
+                this.router.navigate(['/home']);
+            }
+         });
+    }
 
 }

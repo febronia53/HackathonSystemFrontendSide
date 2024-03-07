@@ -12,10 +12,11 @@ export class HeaderComponent {
   role:boolean|null=false;
 constructor(private authSer:AuthService,private router:Router){
   authSer.user.subscribe(res=>{
-    console.log(res);
     this.isAuthenticated=<boolean>res;
   })
+ 
   authSer.roles.subscribe(res=>{
+    console.log(res);
     this.role=res;
   })
 }
