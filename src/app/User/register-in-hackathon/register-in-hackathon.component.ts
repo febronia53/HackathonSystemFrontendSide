@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -10,8 +10,8 @@ import { hackathonService } from 'src/app/Hackathon/hackathon.service';
   templateUrl: './register-in-hackathon.component.html',
   styleUrls: ['./register-in-hackathon.component.scss']
 })
-export class RegisterInHackathonComponent {
-  routeSubscription:Subscription;
+export class RegisterInHackathonComponent implements OnInit{
+  routeSubscription!:Subscription;
   hackathon: undefined|Hackathon;
   teamMembers=new FormArray([]);
   RegisterHackathon= new FormGroup({
@@ -20,12 +20,16 @@ export class RegisterInHackathonComponent {
    teamMembers:new FormArray([]),
  })
 
-  constructor(private route:ActivatedRoute,private hackService:hackathonService){
+  constructor(private route:ActivatedRoute,private hackService:hackathonService,
+ ){
+  }
+  ngOnInit(): void {
     this.routeSubscription = this.route.params.subscribe(params => {
       const id = params['id']; 
-      this.hackathon=hackService.getHackathonById(id);
+      this.hackathon=this.hackService.getHackathonById(id);
   });
-}
+  
+  }
 
 onAddMember(){
   (<FormArray>this.RegisterHackathon.get('teamMembers')).push(new FormGroup({

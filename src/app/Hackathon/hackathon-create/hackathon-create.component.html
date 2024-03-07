@@ -30,16 +30,16 @@
               
               <div class="form-group">
                 <label for="maxTeamSize">Maximum Team Size</label>
-                <input type="number" formControlName="MaximumTeamSize" class="form-control" id="maxTeamSize" placeholder="Enter maximum team size" name="maxTeamSize" required>
-                <span *ngIf="addHackathonform.get('MaximumTeamSize')!.touched && addHackathonform.get('MaximumTeams')!.invalid"
+                <input type="number" formControlName="maxTeamSize" class="form-control" id="maxTeamSize" placeholder="Enter maximum team size" name="maxTeamSize" required>
+                <span *ngIf="addHackathonform.get('maxTeamSize')!.touched && addHackathonform.get('maxTeamSize')!.invalid"
                  class="text-danger">
                   Maximum team size is required.
                 </span>
               </div>
               <div class="form-group">
                 <label for="maxNumberOfTeams">Maximum Number of Teams</label>
-                <input type="number" formControlName="MaximumTeams" class="form-control" id="maxNumberOfTeams" placeholder="Enter maximum number of teams" name="maxNumberOfTeams" required>
-                <span *ngIf="addHackathonform.get('MaximumTeams')!.touched && addHackathonform.get('MaximumTeams')!.invalid"
+                <input type="number" formControlName="maxTeams" class="form-control" id="maxTeams" placeholder="Enter maximum number of teams" name="maxTeams" required>
+                <span *ngIf="addHackathonform.get('maxTeams')!.touched && addHackathonform.get('maxTeams')!.invalid"
                  class="text-danger">
                   Maximum teams is required.
                 </span>
@@ -47,9 +47,9 @@
               
               <div class="flex-auto my-1" >
                 <label for="icondisplay" class="font-bold block mb-2" > Event start date </label><br>
-                <p-calendar id="eventStartDate"
-                [showIcon]="true" formControlName="EventStartDate" styleClass="prime-slider-override"></p-calendar>
-                <span *ngIf="addHackathonform.get('EventStartDate')!.touched && addHackathonform.get('EventStartDate')!.invalid"
+                <p-calendar id="eventDate"
+                [showIcon]="true" formControlName="eventDate" styleClass="prime-slider-override"></p-calendar>
+                <span *ngIf="addHackathonform.get('eventDate')!.touched && addHackathonform.get('eventDate')!.invalid"
                 class="text-danger">
                  Event Start is required.
                </span>
@@ -58,8 +58,8 @@
               <div class="flex-auto my-1">
                 <label for="icondisplay" class="font-bold block mb-2 me-5"> Registration start date </label><br>
                 <p-calendar id="regStartDate" 
-                [showIcon]="true" formControlName="RegisterationStartDate" styleClass="prime-slider-override"></p-calendar>
-                <span *ngIf="addHackathonform.get('RegisterationStartDate')!.touched && addHackathonform.get('RegisterationStartDate')!.invalid"
+                [showIcon]="true" formControlName="registrationStartDate" styleClass="prime-slider-override"></p-calendar>
+                <span *ngIf="addHackathonform.get('registrationStartDate')!.touched && addHackathonform.get('registrationStartDate')!.invalid"
                 class="text-danger">
                 Registration start date is required.
                </span>
@@ -67,15 +67,15 @@
               <div class="flex-auto my-1">
                 <label for="icondisplay" class="font-bold block mb-2 me-5"> Registration end date </label><br>
                 <p-calendar id="regEndDate" 
-                [showIcon]="true" formControlName="RegisterationEndDate" styleClass="prime-slider-override"></p-calendar>
-                <span *ngIf="addHackathonform.get('RegisterationEndDate')!.touched && addHackathonform.get('RegisterationEndDate')!.invalid"
+                [showIcon]="true" formControlName="registrationEndDate" styleClass="prime-slider-override"></p-calendar>
+                <span *ngIf="addHackathonform.get('registrationEndDate')!.touched && addHackathonform.get('registrationEndDate')!.invalid"
                  class="text-danger">
                  Registration end date is required.
                 </span>
               </div>
               <div class="form-group">
                 <label for="challengeTitles" class="me-5">List of Challenge Titles</label>
-                <p-chips formControlName="ListOfChallengeTitles" class="custom-chips" ></p-chips>
+                <p-chips formControlName="challengeTitles" class="custom-chips" ></p-chips>
               </div>
               
               <button type="submit" class="btn btn-primary" style="background-color: #013168 ;">Add</button>

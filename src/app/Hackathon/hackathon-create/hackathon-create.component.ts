@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import {  FormControl, FormGroup, Validators } from '@angular/forms';
 import { hackathonService } from '../hackathon.service';
 
 @Component({
@@ -12,15 +12,15 @@ export class HackathonCreateComponent {
   addHackathonform=new FormGroup({
     name:new FormControl(null,[Validators.required]),
     theme:new FormControl(null,[Validators.required]),
-    EventStartDate:new FormControl(null,[Validators.required]),
-    RegisterationStartDate:new FormControl(null,[Validators.required]),
-    RegisterationEndDate:new FormControl(null,[Validators.required]),
-    MaximumTeamSize:new FormControl(null,[Validators.required]),
-    MaximumTeams:new FormControl(null,[Validators.required]),
-    ListOfChallengeTitles:new FormControl([])
+    eventDate:new FormControl(null,[Validators.required]),
+    registrationStartDate:new FormControl(null,[Validators.required]),
+    registrationEndDate:new FormControl(null,[Validators.required]),
+    maxTeamSize:new FormControl(null,[Validators.required]),
+    maxTeams:new FormControl(null,[Validators.required]),
+    challengeTitles :new FormControl([]),
+    teamRegisterations:new FormControl([]),
   });
   onSubmit(){
-    console.log(this.addHackathonform)
-  
+    this.hackathonService.CreateHackathon(this.addHackathonform.value);
   }
 }

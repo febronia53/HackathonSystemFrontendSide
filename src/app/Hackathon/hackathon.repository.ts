@@ -68,14 +68,12 @@ export class hackathonRepository{
     constructor(private httpClient:HttpClient){ }
     fetchHackathondata(){
     }
-    SaveHackathonData(){
 
-    }
     getHackathonsArray(){
         return this.httpClient.get<any[]>("https://localhost:7296/api/Hackathon")
     }
 
     CreateHackathon(hackathonData:any){
-      //return this.httpClient.post("")
+      return this.httpClient.post<{isSuccess: true, message: string,id: number}>("https://localhost:7296/api/Hackathon",hackathonData)
     }
 }
